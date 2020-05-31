@@ -3,7 +3,9 @@ import pandas as pd
 import matplotlib.pyplot as plt
 from sklearn import datasets
 from numpy.random import multivariate_normal
-from Documents.M3R.causal-discovery-for-CI-test.functions import indep,cond_indep,estimate_skeleton
+import sys
+print(sys.path)
+from CD.functions import indep,cond_indep,estimate_skeleton
 
 boston = datasets.load_boston()
 features = boston.data
