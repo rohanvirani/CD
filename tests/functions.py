@@ -206,7 +206,7 @@ def estimate_skeleton(indep_test_func, data_matrix, alpha, **kwargs):
                     print(k)
                     if l == 0: 
                         
-                        p_val, test_statistic = indep(data_matrix,i,j)
+                        p_val, _ = indep(data_matrix,i,j)
                         
                     else: # conditional independence testing
                         
