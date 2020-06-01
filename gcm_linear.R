@@ -40,3 +40,9 @@ for (n in c(50,100,150,200))  {
   t2_complete <- c(t2_complete,t2_all_vals)
 }
 
+df_1 <- data.frame(t1 = c(t1_complete))
+write.csv(df_1,"~/Documents/M3R/CD/gcm_linear_t1.csv")
+
+df_2 <- data.frame(t2 = c(t2_complete))
+write.csv(df_2,"~/Documents/M3R/CD/gcm_linear_t2.csv")
+

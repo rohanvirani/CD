@@ -1,4 +1,4 @@
-library(GeneralisedCovarianceMeasure)
+library(CondIndTests)
 library(pracma)
 library(LaplacesDemon)
 t1_complete <- vector()
@@ -17,15 +17,15 @@ for (n in c(50,100,150,200))  {
       sigma <- matrix(c(1,rho,rho,1),2,2)
       error <- rmvn(n,c(0,0),sigma)
       Z1 <- rnorm(n,2,1)
-      X1 <- sin(15*Z1 + 0.0001) + error[,1]
-      Y1 <- tanh(5*Z1 + + 0.004) + error[,2]
+      X1 <- 15*Z1 + 0.0001 + error[,1]
+      Y1 <- 5*Z1 + + 0.004 + error[,2]
       if (rho == 0) {
-        if (gcm.test(X1,Y1,Z1,alpha=0.05,regr.method="gam",plot.residuals = FALSE)$p.value < 0.05) {
+        if (KCI(X1,Y1,Z1,alpha=0.05,gammaApprox=FALSE)$pvalue < 0.05) {
           t_1 = t_1 + 1
         }
       }
       if (rho != 0) {
-        if (gcm.test(X1,Y1,Z1,alpha=0.05,regr.method="gam",plot.residuals = FALSE)$p.value >= 0.05) {
+        if (KCI(X1,Y1,Z1,alpha=0.05,gammaApprox=FALSE)$pvalue >= 0.05) {
           t_2 = t_2 + 1
         }
       }
@@ -39,12 +39,11 @@ for (n in c(50,100,150,200))  {
   }
   t1_complete <- c(t1_complete,t1_all_vals)
   t2_complete <- c(t2_complete,t2_all_vals)
-  
 }
 
 df_1 <- data.frame(t1 = c(t1_complete))
-write.csv(df_1,"~/Documents/M3R/CD/gcm_nonlinear_t1.csv")
+write.csv(df_1,"~/Documents/M3R/CD/kci_linear_t1.csv")
 
 df_2 <- data.frame(t2 = c(t2_complete))
-write.csv(df_2,"~/Documents/M3R/CD/gcm_nonlinear_t2.csv")
+write.csv(df_2,"~/Documents/M3R/CD/kci_linear_t2.csv")
 

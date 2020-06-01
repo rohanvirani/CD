@@ -31,7 +31,7 @@ def independence_exp():
                 Y = Y.reshape(Y.shape[0],1)
                 X = X.reshape(X.shape[0],1)
                 data = np.concatenate((X,Y,Z),axis=1)
-                p, _, _ ,HSIC = cond_indep(data,0,1,[2])
+                p, _, _ ,_ = cond_indep(data,0,1,[2])
                 if rho == 0:
                     if p < 0.05:
                         t_1 += 1
