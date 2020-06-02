@@ -47,7 +47,16 @@ def independence_exp():
         
     return t1_complete, t2_complete, rho_vals        
 
-t1_linear, t2_linear, rho_vals= independence_exp()
+resit_nonlinear_t1, resit_nonlinear_t2, rho_vals= independence_exp()
+
+gcm_nonlinear_t1 = pd.read_csv('~/Documents/M3R/CD/gcm_nonlinear_t1.csv')
+gcm_nonlinear_t2 = pd.read_csv('~/Documents/M3R/CD/gcm_nonlinear_t2.csv')
+
+kci_nonlinear_t1 = pd.read_csv('~/Documents/M3R/CD/kci_nonlinear_t1.csv')
+kci_nonlinear_t2 = pd.read_csv('~/Documents/M3R/CD/kci_nonlinear_t2.csv')
+
+
+
 
 fig = plt.figure(figsize=(15,5))
 ax2 = fig.add_subplot(1,2,2)
