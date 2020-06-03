@@ -20,7 +20,7 @@ def independence_exp():
             rho_vals.append(rho)
             t_1 = 0
             t_2 = 0
-            for i in np.arange(200):
+            for i in np.arange(100):
                 e_X,e_Y = multivariate_normal(mean=(0,0),cov=[[1,rho],[rho,1]],size=(n)).T
                 e_Y = e_Y.reshape(e_Y.shape[0],1)
                 e_X = e_X.reshape(e_X.shape[0],1)
@@ -49,19 +49,8 @@ def independence_exp():
 
 resit_linear_t1, resit_linear_t2, rho_vals= independence_exp()
 
-gcm_linear_t1 = pd.read_csv('~/Documents/M3R/CD/gcm_linear_t1.csv')
-gcm_linear_t2 = pd.read_csv('~/Documents/M3R/CD/gcm_linear_t2.csv')
+resit_t1 = pd.DataFrame(resit_linear_t1)
+resit_t2 = pd.DataFrame(resit_linear_t2)
 
-kci_linear_t1 = pd.read_csv('~/Documents/M3R/CD/kci_linear_t1.csv')
-kci_linear_t2 = pd.read_csv('~/Documents/M3R/CD/kci_linear_t2.csv')
-
-fig = plt.figure(figsize=(15,5))
-ax2 = fig.add_subplot(1,2,2)
-ax2.set_title("Type 2 Errors against rho values for varying n")
-ax2.set_xlabel("rho value")
-ax2.set_ylabel("Type 2 error count")
-for i in np.arange(4):
-    ax2.plot(rho_vals[1:20],t2_linear[i],label="n = " + str((i+1)*50))
-ax2.legend()
-
-print(t1_linear)
+resit_t1.to_csv('resit_linear_t1.csv')
+resit_t2.to_csv('resit_linear_t2.csv')
