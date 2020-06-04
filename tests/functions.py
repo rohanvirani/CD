@@ -174,6 +174,7 @@ def estimate_skeleton(indep_test_func, data_matrix, alpha, **kwargs):
         return ('method' in kwargs) and kwargs['method'] == "stable"
     node_ids = range(data_matrix.shape[1])
     g = _create_complete_graph(node_ids)
+    nx.draw_networkx(g)
     node_size = data_matrix.shape[1]
     sep_set = [[set() for i in range(node_size)] for j in range(node_size)]
     
@@ -201,9 +202,10 @@ def estimate_skeleton(indep_test_func, data_matrix, alpha, **kwargs):
                 
                 
                 for kk in np.arange(completed_z_idx, length_cc):
-                    print(kk)
+                    print(g)
+                    
                     k = cc[kk]
-                    print(k)
+                    
                     if l == 0: 
                         
                         p_val, _ = indep(data_matrix,i,j)
@@ -235,5 +237,5 @@ def estimate_skeleton(indep_test_func, data_matrix, alpha, **kwargs):
             break
         if ('max_reach' in kwargs) and (l > kwargs['max_reach']):
             break
-
-    return (nx.draw_networkx(g), sep_set)
+    
+    return (g, sep_set)
